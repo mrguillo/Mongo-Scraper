@@ -6,6 +6,8 @@ var express = require("express");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
+var moment = require('moment');
+moment().format();
 
 // Scraping tools
 var axios = require("axios");
@@ -45,16 +47,20 @@ console.log("\n***********************************\n" +
 app.get("/scrape", function (req, res) {
     axios.get("http://www.nytimes.com/").then(function (response) {
         var $ = cheerio.load(response.data);
-        var results = [];
+        var result = {};
         $("article").each(function (i, element) {
-            var title = $(this).find("h2").text();
-            var link = "https://www.nytimes.com" + $(this).find("a").attr("href");
-            results.push({
-                title: title,
-                link: link
+            result.title = $(this).find("h2").text();
+            result.link = "https://www.nytimes.com" + $(this).find("a").attr("href");
+            console.log(result);
+            db.Article.create(result)
+            .then(function(dbArticle) {
+                console.log(dbArticle);
+            })
+            .catch(function(err) {
+                console.log(err);
             });
         });
-        console.log(results);
+        res.send("www.nytimes.com home page succesfuly scraped and saved to MongoDB " + moment().calendar());
     });
 });
 
