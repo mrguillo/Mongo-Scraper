@@ -30,7 +30,7 @@ app.use(express.urlencoded({
     extended: true
 }));
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
 mongoose.connect("mongodb://localhost/mongoscraper", {
     useNewUrlParser: true
 });
@@ -39,8 +39,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Set Handlebars.
-var exphbs = require("express-handlebars");
-
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
@@ -56,9 +54,9 @@ app.get("/", function (req, res) {
                 article: data
             };
             console.log(object);
-        }).then(function (dbArticle) {
-            // res.json(dbArticle);
-            res.render("home", dbArticle)
+        }).then(function (object) {
+            // res.json(object);
+            res.render("home", {object});
         })
         .catch(function (err) {
             res.json(err);
