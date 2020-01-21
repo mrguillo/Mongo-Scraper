@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{article.title}}</h5>
+                <p class="card-text">{{body}}</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <form action="/comment/{{article._id}}" method="post"></form>
+        <div class="row">
+            <div class="input-field">
+                <p>Input field</p>
+            </div>
+        </div>
+        <div class="row">
+            <input type="button" placeholder="comment" value="" class="btn">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-2">
+
+    </div>
+    <div class="col-lg-8">
+        <h5>Comments:</h5>
+        {{#if article.comment}}
+        {{#each article.comment}}
+        <div>
+            <p>{{name}}</p>
+            <p>{{body}}</p>
+        </div>
+        {{/each}}
+        {{else}}
+        <p>No comments yet</p>
+        {{/if}}
+    </div>
+</div>
