@@ -53,7 +53,7 @@ app.get("/", function (req, res) {
             console.log(object[0].title);
             // object={ saved: false, title: 'Senate Opens Proceedings in Utter Acrimony', link: 'https://www.nytimes.com/2020/01/21/us/politics/trump-impeachment-trial.html', __v: 0 };
             // res.json(object);
-            res.render("home", {data:object[0]});
+            res.render("home", {data:object});
         })
         .catch(function (err) {
             console.log("catch");

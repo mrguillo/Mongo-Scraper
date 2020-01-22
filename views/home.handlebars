@@ -1,24 +1,47 @@
 <!--Homepage-->
 <div class="container">
     <br>
-    <div class="col-md-12 jumbotron">
-        <div class="text-center">
-            <h1> New York Times Mongo Scraper</h1>
+    <div class="row">
+        <div class="col-md-12 jumbotron">
+            <div class="text-center">
+                <h1> New York Times </h1>
+                <h3>Mongo Scraper</h3>
+                <hr>
+                <a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape</a>
+            </div>
         </div>
     </div>
     <div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    {{#if data}}
-                    <h5>Today's articles</h5>
-                    <ul class="list">
-{{#each data}}
-                        <li>{{title}}</li>
-{{/each}}
-                    </ul>
                     
+                    {{#if data}}
+                    
+                    <div class="div">
+                        <h3 class="title">Today's articles</h3>
+                    </div>
+
+                    {{#each data}}
+
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page"><a href="{{link}}" target="_blank"
+                                    rel="noopener noreferrer" data-toggle="tooltip" data-placement="top"
+                                    title="Go to article">{{title}}</a></li>
+                            <li class="breadcrumb-item"><a href="/notes/save/:id" alt="save article" data-toggle="tooltip"
+                                    data-placement="top" title="Save article"><i class="far fa-star"
+                                        id="fontawesome"></i></a></li>
+                            <li class="breadcrumb-item"><a href="#" alt="comment article" data-toggle="tooltip"
+                                    data-placement="top" title="Comment article"><i class="far fa-comments"
+                                        id="fontawesome"></i></a></li>
+                        </ol>
+                    </nav>
+
+                    {{/each}}
+
                     {{else}}
+
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <h4>Uh Oh. Looks like we don't have any new articles.</h4>
