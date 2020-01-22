@@ -10,12 +10,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    {{#if object}}
+                    {{#if data}}
                     <h5>Today's articles</h5>
                     <ul class="list">
-                        {{#each object}}
-                        <li>{{this}}</li>
-                        {{/each}}
+{{#each data}}
+                        <li>{{title}}</li>
+{{/each}}
                     </ul>
                     
                     {{else}}

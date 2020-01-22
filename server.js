@@ -49,16 +49,14 @@ app.set("view engine", "handlebars");
 app.get("/", function (req, res) {
     db.Article.find({
             "saved": false
-        }, function (error, data) {
-            var object = {
-                article: data
-            };
-            console.log(object);
         }).then(function (object) {
+            console.log(object[0].title);
+            // object={ saved: false, title: 'Senate Opens Proceedings in Utter Acrimony', link: 'https://www.nytimes.com/2020/01/21/us/politics/trump-impeachment-trial.html', __v: 0 };
             // res.json(object);
-            res.render("home", {object});
+            res.render("home", {data:object[0]});
         })
         .catch(function (err) {
+            console.log("catch");
             res.json(err);
         });
 });
