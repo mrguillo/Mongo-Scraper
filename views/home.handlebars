@@ -15,24 +15,23 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    {{#if data}}                    
+                    {{#if data}}
                     <div class="div">
-                        <h3 class="title">Today's articles</h3>
+                        <h2 class="title">Today's articles</h2>
                     </div>
                     {{#each data}}
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item active" aria-current="page"><a href="{{link}}" target="_blank"
-                                    rel="noopener noreferrer" data-toggle="tooltip" data-placement="top"
-                                    title="Go to article">{{title}}</a></li>
-                            <li class="breadcrumb-item"><a href="/notes/save/:id" alt="save article" data-toggle="tooltip"
-                                    data-placement="top" title="Save article"><i class="far fa-star"
-                                        id="fontawesome"></i></a></li>
-                            <li class="breadcrumb-item"><a href="#" alt="comment article" data-toggle="tooltip"
-                                    data-placement="top" title="Comment article"><i class="far fa-comments"
-                                        id="fontawesome"></i></a></li>
-                        </ol>
-                    </nav>
+                    <div class="card text-white bg-dark mb-3" style="width: 100%;">
+                        <div class="card-body">
+                            <h5 class="card-title" id="article">{{title}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted" id="summary">{{summary}}</h6>
+                            <a href="{{link}}" target="_blank" rel="noopener noreferrer" class="btn btn-link btn-sm"
+                                role="button"><i class="fas fa-glasses"></i></a>
+                            <a href="{{link}}" target="_blank" rel="noopener noreferrer" class="btn btn-link btn-sm"
+                                role="button" data-toggle="modal" data-target="{{_id}}"><i class="far fa-save"></i></a>
+                            <a href="{{link}}" target="_blank" rel="noopener noreferrer" class="btn btn-link btn-sm"
+                                role="button" data-toggle="modal" data-target="#noteModal{{this._id}}" data-id={{this._id}}><i class="far fa-comment"></i></a>
+                        </div>
+                    </div>
                     {{/each}}
                     {{else}}
                     <div class="panel panel-default">
@@ -46,3 +45,8 @@
         </div>
     </div>
 </div>
+
+<!--Clicked Notes Modal-->
+{{#each data}}
+    {{> notes_modal }}
+{{/each}}

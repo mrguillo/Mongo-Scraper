@@ -73,6 +73,7 @@ app.get("/scrape", function (req, res) {
         $("article").each(function (i, element) {
             result.title = $(this).find("h2").text();
             result.link = "https://www.nytimes.com" + $(this).find("a").attr("href");
+            result.summary = $(this).find("p").text();
             console.log(result);
             db.Article.create(result)
                 .then(function (dbArticle) {

@@ -1,17 +1,20 @@
 body {
+  background-image: url("https://as2.ftcdn.net/jpg/00/26/40/19/1000_F_26401946_7EnLGb5SifxGtjJWfir8dXANdCdhVxeS.jpg");
+}
+
+#article {
   font-family: 'Gelasio', serif;
   font-size: 22px;
-  background-image: url("https://previews.123rf.com/images/korolyok/korolyok1803/korolyok180300133/98408508-old-grunge-newspaper-paper-texture-background-blurred-vintage-newspaper-background-aged-blur-paper-t.jpg");
-  /* background-color: #cccccc; */
 }
 
-.breadcrumb .breadcrumb-item:nth-child(2)::before {
-  content: "";
-color: darkgray;
+#summary {
+  font-family: 'Gelasio', serif;
+  font-size: 21px;
 }
 
-a {
-  color: black;
+#link {
+  font-size: 13px;
+  color: #037BFF;
 }
 
 #fontawesome {
