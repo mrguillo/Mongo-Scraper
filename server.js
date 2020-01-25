@@ -113,117 +113,31 @@ app.get("/articles/:id", function (req, res) {
         });
 });
 
-// Route for saving/updating an Article's associated Note
-app.post("/articles/:id", function (req, res) {
-    db.Note.create(req.body)
-        .then(function (dbNote) {
-            return db.Article.findOneAndUpdate({
-                _id: req.params.id
-            }, {
-                note: dbNote._id
-            }, {
-                new: true
-            });
-        })
-        .then(function (dbArticle) {
-            res.json(dbArticle);
+// Rout dusplaying saved articles
+app.get("/saved", function (req, res) {
+    db.Article.find({
+            "saved": true
+        }).then(function (object) {
+            console.log(object[0].title);
+            res.render("saved", {data:object});
         })
         .catch(function (err) {
+            console.log("catch");
             res.json(err);
         });
 });
 
-// NEW ******************************
-
-// Delete an article
-app.post("/articles/delete/:id", function (req, res) {
-    // Use the article id to find and update its saved boolean
-    Article.findOneAndUpdate({
-            "_id": req.params.id
-        }, {
-            "saved": false,
-            "notes": []
-        })
-        // Execute the above query
-        .exec(function (err, doc) {
-            // Log any errors
-            if (err) {
-                console.log(err);
-            } else {
-                // Or send the document to the browser
-                res.send(doc);
-            }
-        });
+// Posts saved articles 
+app.post("/saved/:id", function(req, res) {
+    db.Article.findOneAndUpdate({"_id": req.params.id}, {"$set": {"saved": true}})
+    .then(function(result) {
+        res.json(result);
+    }).catch(function(err){ res.json(err) });
 });
 
-
-// Create a new note
-app.post("/notes/save/:id", function(req, res) {
-// Create a new note and pass the req.body to the entry
-var newNote = new Note({
-  body: req.body.text,
-  article: req.params.id
-});
-console.log(req.body)
-// And save the new note the db
-newNote.save(function(error, note) {
-  // Log any errors
-  if (error) {
-    console.log(error);
-  }
-  // Otherwise
-  else {
-    // Use the article id to find and update it's notes
-    Article.findOneAndUpdate({ "_id": req.params.id }, {$push: { "notes": note } })
-    // Execute the above query
-    .exec(function(err) {
-      // Log any errors
-      if (err) {
-        console.log(err);
-        res.send(err);
-      }
-      else {
-        // Or send the note to the browser
-        res.send(note);
-      }
-    });
-  }
-});
-});
-
-// Delete a note
-app.delete("/notes/delete/:note_id/:article_id", function(req, res) {
-// Use the note id to find and delete it
-Note.findOneAndRemove({ "_id": req.params.note_id }, function(err) {
-  // Log any errors
-  if (err) {
-    console.log(err);
-    res.send(err);
-  }
-  else {
-    Article.findOneAndUpdate({ "_id": req.params.article_id }, {$pull: {"notes": req.params.note_id}})
-     // Execute the above query
-      .exec(function(err) {
-        // Log any errors
-        if (err) {
-          console.log(err);
-          res.send(err);
-        }
-        else {
-          // Or send the note to the browser
-          res.send("Note Deleted");
-        }
-      });
-  }
-});
-});
-
-
-// END NEW **************************
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoscraper";
 mongoose.connect(MONGODB_URI);
-
 
 // Start the server
 // ---------------------------------------------------------

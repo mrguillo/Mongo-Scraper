@@ -1,40 +1,48 @@
-<!--Saved Articles Page-->
-
+<!--Saved articles page-->
 <div class="container">
-
-    <div class="col-md-12 jumbotron">
-        <div class="text-center">
-            <h1> Saved Articles</h1>
+    <br>
+    <div class="row">
+        <div class="col-md-12 jumbotron">
+            <div class="text-center">
+                <h1> New York Times </h1>
+                <h3>Mongo Scraper</h3>
+            </div>
         </div>
     </div>
-    <div class="col-md-12">
-        {{#if article}}
-        {{#each article}}
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4>{{this.title}}</h4>
-            </div>
-            <div class="panel-body">
-                <p> {{this.summary}}</p>
-                <a href={{this.link}} target="_blank">{{this.link}}</a>
-                <br><br>
-                <button type="button" class="btn btn-success addNote" data-toggle="modal"
-                    data-target="#noteModal{{this._id}}" data-id={{this._id}}>View/Add Notes</button>
-                <button type="button" class="btn btn-danger delete" data-id={{this._id}}>Delete</button>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    {{#if data}}
+                    <div class="div">
+                        <h2 class="title">Saved articles</h2>
+                    </div>
+                    {{#each data}}
+                    <div class="card text-white bg-dark mb-3" style="width: 100%;">
+                        <div class="card-body">
+                            <h5 class="card-title" id="article">{{title}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted" id="summary">{{summary}}</h6>
+                            <a href="{{link}}" target="_blank" rel="noopener noreferrer" class="btn btn-link btn-sm"
+                                role="button"><i class="fas fa-glasses"></i></a>
+                            <a href="{{link}}" target="_blank" rel="noopener noreferrer" class="btn btn-link btn-sm"
+                                role="button" data-toggle="modal" data-target="#noteModal{{this._id}}" data-id={{this._id}} ><i class="far fa-comment"></i></a>
+                        </div>
+                    </div>
+                    {{/each}}
+                    {{else}}
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h4>Uh Oh. Looks like we don't have any new articles.</h4>
+                        </div>
+                    </div>
+                    {{/if}}
+                </div>
             </div>
         </div>
-        {{/each}}
-        {{else}}
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <h4>You have no saved articles.</h4>
-            </div>
-        </div>
-        {{/if}}
     </div>
 </div>
 
 <!--Clicked Notes Modal-->
-{{#each article}}
-{{> notes-modal }}
+{{#each data}}
+    {{> notes_modal }}
 {{/each}}

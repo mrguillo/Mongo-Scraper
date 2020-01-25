@@ -26,10 +26,10 @@
                             <h6 class="card-subtitle mb-2 text-muted" id="summary">{{summary}}</h6>
                             <a href="{{link}}" target="_blank" rel="noopener noreferrer" class="btn btn-link btn-sm"
                                 role="button"><i class="fas fa-glasses"></i></a>
-                            <a href="{{link}}" target="_blank" rel="noopener noreferrer" class="btn btn-link btn-sm"
-                                role="button" data-toggle="modal" data-target="{{_id}}"><i class="far fa-save"></i></a>
-                            <a href="{{link}}" target="_blank" rel="noopener noreferrer" class="btn btn-link btn-sm"
-                                role="button" data-toggle="modal" data-target="#noteModal{{this._id}}" data-id={{this._id}}><i class="far fa-comment"></i></a>
+                            <button href="{{link}}" class="btn btn-link btn-sm"
+                                role="button" data-toggle="modal" data-target="{{_id}}" ><i class="far fa-save"></i></button>
+                            {{!-- <a href="{{link}}" target="_blank" rel="noopener noreferrer" class="btn btn-link btn-sm"
+                                role="button" data-toggle="modal" data-target="#noteModal{{this._id}}" data-id={{this._id}} ><i class="far fa-comment"></i></a> --}}
                         </div>
                     </div>
                     {{/each}}
