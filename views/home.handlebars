@@ -20,14 +20,14 @@
                         <h2 class="title">Today's articles</h2>
                     </div>
                     {{#each data}}
-                    <div class="card text-white bg-dark mb-3" style="width: 100%;">
+                    <div class="card text-white bg-dark mb-3 newscard" style="width: 100%;" data-target="{{_id}}">
                         <div class="card-body">
                             <h5 class="card-title" id="article">{{title}}</h5>
                             <h6 class="card-subtitle mb-2 text-muted" id="summary">{{summary}}</h6>
                             <a href="{{link}}" target="_blank" rel="noopener noreferrer" class="btn btn-link btn-sm"
                                 role="button"><i class="fas fa-glasses"></i></a>
-                            <button href="{{link}}" class="btn btn-link btn-sm"
-                                role="button" data-toggle="modal" data-target="{{_id}}" ><i class="far fa-save"></i></button>
+                            <button  class="btn btn-link btn-sm save-btn"
+                                role="button"  data-target="{{_id}}" id="save-btn"><i class="far fa-save"></i></button>
                             {{!-- <a href="{{link}}" target="_blank" rel="noopener noreferrer" class="btn btn-link btn-sm"
                                 role="button" data-toggle="modal" data-target="#noteModal{{this._id}}" data-id={{this._id}} ><i class="far fa-comment"></i></a> --}}
                         </div>

@@ -128,9 +128,10 @@ app.get("/saved", function (req, res) {
 });
 
 // Posts saved articles 
-app.post("/saved/:id", function(req, res) {
+app.get("/saved/:id", function(req, res) {
     db.Article.findOneAndUpdate({"_id": req.params.id}, {"$set": {"saved": true}})
     .then(function(result) {
+        console.log("article saved")
         res.json(result);
     }).catch(function(err){ res.json(err) });
 });
