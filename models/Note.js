@@ -2,6 +2,7 @@
 var mongoose = require("mongoose");
 // Create a schema class
 var Schema = mongoose.Schema;
+var Article = require("./Article");
 
 // Create the Note schema
 var NoteSchema = new Schema({

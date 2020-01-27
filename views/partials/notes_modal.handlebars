@@ -4,9 +4,10 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Notes for {{this.title}}</h4>
+                {{!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button> --}}
+
+                <h5 class="modal-title">{{this.title}}</h5>
             </div>
             <div class="modal-body">
                 {{#if this.notes}}
@@ -26,15 +27,22 @@
                     </div>
                 </div>
                 {{/if}}
-                <div class="form-group">
-                    <textarea id="noteText{{this._id}}" class="form-control" rows="4" placeholder="New Note"></textarea>
-                </div>
+                <label >Type your article's note below:</label>
+                <input type="text" class="noteText form-control form-control-lg" 
+                    aria-describedby="textHelp" value="" required>
+                <small id="textHelp" class="form-text text-muted">Limited to 140 characters</small>
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary saveNote" data-id={{this._id}}>Save Note</button>
+                <button type="button" class="close btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="saveNote btn btn-primary" data-id={{this._id}}>Save Note</button>
             </div>
         </div>
     </div>
 </div>
 
+{{!-- <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script> --}}
+<script src="/app.js"></script>

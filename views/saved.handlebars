@@ -18,14 +18,18 @@
                         <h2 class="title">Saved articles</h2>
                     </div>
                     {{#each data}}
-                    <div class="card text-white bg-dark mb-3" style="width: 100%;">
+                    <div class="card text-white bg-dark mb-3" style="width: 100%;" data-target="{{_id}}">
                         <div class="card-body">
                             <h5 class="card-title" id="article">{{title}}</h5>
+                            <hr>
                             <h6 class="card-subtitle mb-2 text-muted" id="summary">{{summary}}</h6>
                             <a href="{{link}}" target="_blank" rel="noopener noreferrer" class="btn btn-link btn-sm"
-                                role="button"><i class="fas fa-glasses"></i></a>
-                            <a href="{{link}}" target="_blank" rel="noopener noreferrer" class="btn btn-link btn-sm"
-                                role="button" data-toggle="modal" data-target="#noteModal{{this._id}}" data-id={{this._id}} ><i class="far fa-comment"></i></a>
+                                role="button"><i class="fas fa-glasses"></i> Read</a>
+                            <button href="{{link}}" target="_blank" rel="noopener noreferrer" class="btn btn-link btn-sm"
+                                role="button" data-toggle="modal" data-target="#noteModal{{this._id}}"
+                                data-id={{this._id}}><i class="far fa-comment"></i> Notes</button>
+                                <button class="btn btn-link save-btn" role="button" data-target="{{_id}}" id="save-btn"><i class="fas fa-trash-alt"></i> Delete</button>
+                            <p id="little">Scraped on {{scraped_at}}</p>
                         </div>
                     </div>
                     {{/each}}
@@ -44,5 +48,5 @@
 
 <!--Clicked Notes Modal-->
 {{#each data}}
-    {{> notes_modal }}
+{{> notes_modal }}
 {{/each}}

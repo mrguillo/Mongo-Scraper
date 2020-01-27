@@ -1,13 +1,15 @@
 // Require mongoose
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
+// var uniqueValidator = require("mongoose-unique-validator");
 var Note = require("./Note");
 
 // Create article schema
 var ArticleSchema = new Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+
     },
     summary: {
         type: String,
@@ -15,7 +17,13 @@ var ArticleSchema = new Schema({
     },
     link: {
         type: String,
-        required: true
+        required: true,
+
+    },
+    scraped_at: { 
+        type: Date, 
+        required: true, 
+        default: Date.now 
     },
     saved: {
         type: Boolean,
